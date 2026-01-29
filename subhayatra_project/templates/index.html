@@ -1,0 +1,234 @@
+{% extends "base.html" %} {% load static %}  {% block content %}
+
+<!-- PREMIUM HERO SECTION -->
+<section class="relative w-full overflow-hidden">
+
+  <!-- Desktop Image -->
+  <img
+    src="{{ hero.image }}"
+    class="hidden md:block absolute inset-0 w-full h-full object-cover"
+    alt="Luxury Travel"
+  />
+
+  <!-- Mobile Image -->
+  <img
+    src="{{ hero.mobile_image|default:hero.image }}"
+    class="block md:hidden absolute inset-0 w-full h-full object-cover"
+    alt="Luxury Travel Mobile"
+  />
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/55"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="min-h-[60vh] sm:min-h-[65vh] flex items-center">
+      <div class="max-w-xl text-left">
+
+        <!-- Eyebrow -->
+        <p class="text-[11px] tracking-[0.45em] uppercase text-red-400 font-semibold mb-4">
+          Curated Luxury Journeys
+        </p>
+
+        <!-- Heading -->
+        <h1 class="text-[30px] sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+          Premium Travel
+          <span class="block text-white/90 font-semibold">
+            Crafted for Comfort
+          </span>
+        </h1>
+
+        <!-- Subtext -->
+        <p class="mt-4 text-[14px] sm:text-base text-white/80 leading-relaxed">
+          {{ hero.paragraph }}
+        </p>
+
+        <!-- Buttons (MOBILE SMALL • DESKTOP NORMAL) -->
+        <div class="mt-6 flex gap-3">
+          <a
+            href="#"
+            class="px-4 py-2 text-[12px] sm:px-5 sm:py-2.5 sm:text-[13px]
+                   bg-red-600 text-white rounded-md font-semibold
+                   hover:bg-red-700 transition"
+          >
+            {{ hero.button1_text }}
+          </a>
+
+          <a
+            href="#"
+            class="px-4 py-2 text-[12px] sm:px-5 sm:py-2.5 sm:text-[13px]
+                   border border-white/50 text-white rounded-md font-semibold
+                   hover:border-white transition"
+          >
+            {{ hero.button2_text }}
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!--ABOUT SECTION START-->
+<section class="bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <!-- LEFT CONTENT -->
+      <div>
+        <span class="text-red-600 font-medium text-sm"> About Us </span>
+
+        <h2
+          class="mt-2 text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-800"
+        >
+          Welcome to Subhayatra
+        </h2>
+
+        <p class="mt-1 text-gray-500 text-sm sm:text-base">
+          Your Journey, Our Priority!
+        </p>
+
+        <div
+          class="mt-4 space-y-2 text-gray-600 leading-relaxed text-sm sm:text-base"
+        >
+          <p>
+            At Subhayatra, we take pride in being your premier transport and
+            destination tour service provider. We offer a comprehensive range of
+            transportation services including Cars and Tempo Travellers.
+          </p>
+
+          <p>
+            Whether you're planning a solo adventure, a family vacation, or a
+            corporate outing, we have the perfect vehicle for you. Our
+            well-maintained fleet ensures comfort and reliability.
+          </p>
+        </div>
+
+        <!-- FEATURES -->
+        <div
+          class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-700"
+        >
+          <div class="flex items-center gap-3">
+            <span
+              class="w-5 h-5 flex items-center justify-center bg-red-600 text-white rounded text-xs"
+              >✓</span
+            >
+            Group Tours
+          </div>
+          <div class="flex items-center gap-3">
+            <span
+              class="w-5 h-5 flex items-center justify-center bg-red-600 text-white rounded text-xs"
+              >✓</span
+            >
+            Couple Vacations
+          </div>
+          <div class="flex items-center gap-3">
+            <span
+              class="w-5 h-5 flex items-center justify-center bg-red-600 text-white rounded text-xs"
+              >✓</span
+            >
+            Religious Tours
+          </div>
+          <div class="flex items-center gap-3">
+            <span
+              class="w-5 h-5 flex items-center justify-center bg-red-600 text-white rounded text-xs"
+              >✓</span
+            >
+            Adventure Tours
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT IMAGE -->
+      <div class="flex justify-center lg:justify-end">
+        <img
+          src="{% static 'image/about.png' %}
+"
+          alt="About Subhayatra"
+          class="w-full max-w-[360px] sm:max-w-sm lg:max-w-md object-contain"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Popular Destinations-->
+<section class="bg-white py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Heading -->
+    <div class="max-w-2xl mb-12">
+      <span
+        class="inline-block bg-red-100 text-red-600 text-xs font-semibold px-4 py-1 rounded-full mb-4"
+      >
+        Domestic Travels
+      </span>
+
+      <h2 class="text-4xl font-bold text-gray-900">
+        Incredible <span class="text-red-600">India</span>
+      </h2>
+
+      <p class="text-gray-500 mt-3">
+        Discover the diverse landscapes, rich heritage, and vibrant cultures
+        that make India an extraordinary destination.
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {% for p in packages %}
+      <div
+        class="group bg-white rounded-2xl border overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+      >
+        <!-- Image -->
+        <div class="relative h-52 overflow-hidden">
+          <img
+            src="{{ p.card_image }}"
+            alt="{{ p.title }}"
+            class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+          />
+        </div>
+
+        <!-- Content -->
+        <div class="p-5">
+          <!-- Rating -->
+          <div class="flex items-center gap-2 text-sm mb-2">
+            <div class="text-yellow-400">★★★★★</div>
+            <span class="text-xs bg-red-50 text-red-600 px-2 py-0.5 rounded">
+              {{ p.rating }}
+            </span>
+          </div>
+
+          <!-- Title -->
+          <h3 class="font-semibold text-gray-900 leading-snug text-[15px]">
+            {{ p.card_title }}
+          </h3>
+
+          <!-- Price + Button -->
+          <div class="mt-5 flex items-center justify-between">
+            <span class="text-xl font-bold text-gray-900">₹{{ p.price }}</span>
+
+            <a
+              href="{% url 'package_detail' p.slug %}"
+              class="text-sm font-medium text-white bg-red-600 px-4 py-2 rounded-lg hover:bg-red-700 transition"
+            >
+              Explore →
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% if packages|length >= 8 %}
+<div class="mt-10 text-center">
+  <a href="{% url 'destinations' %}"
+     class="inline-block bg-black text-white px-8 py-3 rounded-xl">
+     View All Destinations →
+  </a>
+</div>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'admin/custom.css' %}">
+{% endblock %}
+
+{% block branding %}
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+<div id="site-name" style="display:flex;align-items:center;gap:12px;">
+  <a href="{% url 'admin:index' %}"
+     style="
+       font-family:'Orbitron', sans-serif;
+       font-size:16px;
+       font-weight:900;
+       letter-spacing:2px;
+     ">
+    SubhaYatra.in
+  </a>
+</div>
+
+{% endblock %}

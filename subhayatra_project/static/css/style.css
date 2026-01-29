@@ -1,0 +1,46 @@
+ @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .animate-marquee {
+        animation: marquee 40s linear infinite;
+      }
+
+/* nevbar section css */
+.nav-link {
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #dc2626;
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover {
+  color: #dc2626;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}

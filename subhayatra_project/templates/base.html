@@ -1,0 +1,288 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>
+      {% block title %}Smokeking Store – Vintage Lighters{% endblock %}
+    </title>
+
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    {% block extra_css %}{% endblock %}
+  </head>
+
+  <body class="bg-white">
+    <!-- HEADER MARQUEE -->
+    <section class="bg-black overflow-hidden">
+      <div class="relative flex whitespace-nowrap">
+        <div
+          class="flex animate-marquee gap-10 py-2 text-[10px] sm:text-[11px] tracking-[0.3em] uppercase text-white font-medium"
+        >
+          <span>✈️ Seamless Journeys — Travel Made Effortless</span>
+          <span>🌍 Discover Beautiful Destinations Across India</span>
+          <span>🚗 Premium Cabs & Comfortable Rides</span>
+          <span>🧳 Curated Travel Experiences for Every Explorer</span>
+
+          <!-- duplicate for smooth loop -->
+          <span>✈️ Seamless Journeys — Travel Made Effortless</span>
+          <span>🌍 Discover Beautiful Destinations Across India</span>
+          <span>🚗 Premium Cabs & Comfortable Rides</span>
+          <span>🧳 Curated Travel Experiences for Every Explorer</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVBAR -->
+    <nav class="w-full bg-white border-b border-gray-100 sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 h-12 flex items-center justify-between"
+      >
+        <img
+          src="https://www.subhayatra.in/upload/main/637614608697243425.png"
+          class="h-8"
+          alt="Logo"
+        />
+
+        <!-- DESKTOP MENU -->
+        <div
+          class="hidden lg:flex items-center gap-8 text-[13px] font-medium text-gray-600"
+        >
+          <a
+            href="{% url 'home' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+          >
+            HOME
+          </a>
+
+          <a
+            href="{% url 'about' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
+          >
+            ABOUT
+          </a>
+
+          <a
+            href="{% url 'carrental' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'car_rental' %}active{% endif %}"
+          >
+            CAR RENTAL
+          </a>
+
+          <a
+            href="{% url 'destinations' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'destinations' %}active{% endif %}"
+          >
+            DESTINATIONS
+          </a>
+
+          <a
+            href="{% url 'tempotravel' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'tempo' %}active{% endif %}"
+          >
+            TEMPO TRAVELLERS
+          </a>
+
+          <a
+            href="{% url 'booking' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'booking' %}active{% endif %}"
+          >
+            BOOKING
+          </a>
+        </div>
+
+        <a
+          href="#"
+          class="hidden lg:block bg-red-600 text-white text-xs px-4 py-1.5 rounded"
+        >
+          Request Call
+        </a>
+
+        <button onclick="openMenu()" class="lg:hidden">☰</button>
+      </div>
+    </nav>
+
+    <!-- PAGE CONTENT -->
+    {% block content %}{% endblock %}
+
+    <!-- Overlay -->
+    <div
+      id="overlay"
+      onclick="closeMenu()"
+      class="fixed inset-0 bg-black/40 opacity-0 pointer-events-none z-40 transition"
+    ></div>
+
+    <!-- SIDEBAR -->
+    <div
+      id="sidebar"
+      class="fixed top-0 right-0 w-[260px] h-full bg-white translate-x-full transition-transform z-50 p-6"
+    >
+      <button onclick="closeMenu()" class="mb-6">✕</button>
+
+      <div class="flex flex-col gap-5 text-sm font-medium text-gray-700">
+        <a
+          href="{% url 'home' %}"
+          class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+        >
+          HOME
+        </a>
+
+        <a
+          href="#"
+          class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
+        >
+          ABOUT
+        </a>
+
+        <a
+          href="{% url 'carrental' %}"
+          class="nav-link {% if request.resolver_match.url_name == 'car_rental' %}active{% endif %}"
+        >
+          CAR RENTAL
+        </a>
+
+        <a
+          href="{% url 'destinations' %}"
+          class="nav-link {% if request.resolver_match.url_name == 'destinations' %}active{% endif %}"
+        >
+          DESTINATIONS
+        </a>
+
+        <a
+          href="{% url 'tempotravel' %}"
+          class="nav-link {% if request.resolver_match.url_name == 'tempo' %}active{% endif %}"
+        >
+          TEMPO TRAVELLERS
+        </a>
+
+        <a
+          href="#"
+          class="nav-link {% if request.resolver_match.url_name == 'booking' %}active{% endif %}"
+        >
+          BOOKING
+        </a>
+      </div>
+    </div>
+
+
+
+
+
+    <!--footer section start-->
+    <footer class="relative bg-[#0b0b0f] text-white overflow-hidden">
+      <!-- FLOATING WORD -->
+      <div
+        class="absolute top-4 right-6 text-[7rem] font-black text-white/5 select-none"
+      >
+        TRAVEL
+      </div>
+      <div class="relative max-w-7xl mx-auto px-6 py-20">
+        <!-- HERO LINE -->
+        <div class="mb-16">
+          <h2
+            class="text-[clamp(2.8rem,6vw,5rem)] font-black leading-none tracking-tight"
+          >
+            <span class="text-white">Let’s Go</span>
+            <span class="block text-[#dc3545]">Somewhere.</span>
+          </h2>
+          <p class="mt-5 text-sm text-gray-400 max-w-md">
+            Not packages. Not templates. Just damn good travel experiences.
+          </p>
+        </div>
+        <!-- STRIP -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-white/10 pt-12"
+        >
+          <!-- BRAND -->
+          <div>
+            <span class="text-xs uppercase tracking-[0.35em] text-gray-500"
+              >Brand</span
+            >
+            <h3 class="mt-3 text-2xl font-extrabold">
+              <span class="text-white">Subha</span
+              ><span class="text-[#dc3545]">Yatra</span>
+            </h3>
+            <p class="mt-3 text-sm text-gray-400">Travel, but with taste.</p>
+          </div>
+          <!-- LINKS -->
+          <div>
+            <span class="text-xs uppercase tracking-[0.35em] text-gray-500"
+              >Explore</span
+            >
+            <ul class="mt-3 space-y-2 text-sm">
+              <li>
+                <a class="transition hover:text-[#dc3545]" href="#"
+                  >International Trips</a
+                >
+              </li>
+              <li>
+                <a class="transition hover:text-[#dc3545]" href="#"
+                  >India Tours</a
+                >
+              </li>
+              <li>
+                <a class="transition hover:text-[#dc3545]" href="#"
+                  >Custom Plans</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- CONTACT -->
+          <div>
+            <span class="text-xs uppercase tracking-[0.35em] text-gray-500"
+              >Say Hi</span
+            >
+            <p class="mt-3 text-sm text-gray-400 leading-relaxed">
+              New Delhi, India +91 88003 07097 hello@unboundtravels.com
+            </p>
+            <!-- CTA -->
+            <a
+              class="inline-block mt-6 px-6 py-3 rounded-full bg-white text-black text-sm font-bold hover:bg-[#dc3545] hover:text-white transition"
+              href="#"
+            >
+              Plan Something Crazy →
+            </a>
+          </div>
+        </div>
+        <!-- BOTTOM -->
+        <div
+          class="mt-14 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500"
+        >
+          © 2025 Subhayatra
+          <span class="italic">DESIGN &amp; DEVELOPED BY CODEXPRO</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <!-- JS -->
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    function openMenu() {
+      sidebar.classList.remove("translate-x-full");
+      overlay.classList.remove("opacity-0", "pointer-events-none");
+    }
+
+    function closeMenu() {
+      sidebar.classList.add("translate-x-full");
+      overlay.classList.add("opacity-0", "pointer-events-none");
+    }
+  </script>
+  {% block extra_js %}{% endblock %}
+</html>

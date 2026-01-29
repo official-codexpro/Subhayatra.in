@@ -1,0 +1,122 @@
+{% extends "base.html" %} {% load static %}  {% block content %}
+
+<!-- ================= HERO ================= -->
+<section class="relative h-[50vh] min-h-[360px] overflow-hidden">
+
+  <!-- Hero Image -->
+  <img src="{{ package.detail_image }}"
+       class="absolute inset-0 w-full h-full object-cover scale-110" />
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/20"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 pt-10">
+
+ <p class="text-white/60 text-xs tracking-widest uppercase">
+  Home / Packages / {{ package.card_title }}
+</p>
+
+
+    <span class="inline-block mt-4 bg-white/10 backdrop-blur px-4 py-1 text-xs text-white rounded-full border border-white/10">
+      Premium Destination
+    </span>
+
+    <h1 class="mt-5 text-3xl sm:text-5xl lg:text-6xl font-bold text-white max-w-3xl leading-tight">
+      {{ package.page_title }}
+    </h1>
+
+   
+
+    <div class="mt-8 flex gap-4 flex-wrap">
+      <a href="#enquiry"
+         class="bg-red-600 hover:bg-red-700 text-white px-7 py-3 rounded-xl text-sm font-medium transition">
+        Book Now
+      </a>
+
+      <a href="https://wa.me/9891170690"
+         class="bg-white/10 backdrop-blur border border-white/20 hover:bg-white/20 text-white px-7 py-3 rounded-xl text-sm font-medium transition">
+        WhatsApp Expert
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= CONTENT ================= -->
+<section class="py-14">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+    <!-- LEFT -->
+    <div class="lg:col-span-2 space-y-10">
+
+      <!-- Overview -->
+      <div class="bg-white p-8 rounded-2xl border">
+        <h2 class="text-2xl font-bold mb-4">Package Overview</h2>
+        <p class="text-gray-600 leading-relaxed">
+          {{ package.overview }}
+        </p>
+      </div>
+
+      <!-- Highlights (DYNAMIC) -->
+      <div class="bg-white p-8 rounded-2xl border">
+        <h2 class="text-2xl font-bold mb-6">Package Highlights</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-600">
+          {% for h in package.highlights.splitlines %}
+            <div>✔ {{ h }}</div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Itinerary (DYNAMIC) -->
+      <div class="bg-white p-8 rounded-2xl border">
+        <h2 class="text-2xl font-bold mb-6">Tour Itinerary</h2>
+
+        <div class="space-y-4 text-gray-600 text-sm">
+          {% for day in package.itinerary.splitlines %}
+            <p>{{ day }}</p>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="space-y-6" id="enquiry">
+
+      <!-- Price -->
+      <div class="bg-white p-8 rounded-2xl border">
+        <p class="text-sm text-gray-500">Starting from</p>
+        <h3 class="text-4xl font-bold text-red-600 mt-2">
+          ₹{{ package.price }}
+        </h3>
+        <p class="text-xs text-gray-500 mt-1">Per person</p>
+
+        <button class="w-full mt-6 bg-red-600 text-white py-3 rounded-xl font-medium hover:bg-red-700 transition">
+          Book Now
+        </button>
+      </div>
+
+      <!-- Enquiry -->
+      <div class="bg-white p-8 rounded-2xl border">
+        <h3 class="text-xl font-bold mb-6">Quick Enquiry</h3>
+
+        <form class="space-y-4">
+          <input type="text" placeholder="Your Name" class="w-full border px-4 py-3 rounded-lg text-sm">
+          <input type="email" placeholder="Email Address" class="w-full border px-4 py-3 rounded-lg text-sm">
+          <input type="tel" placeholder="Phone Number" class="w-full border px-4 py-3 rounded-lg text-sm">
+          <textarea rows="4" placeholder="Your Message" class="w-full border px-4 py-3 rounded-lg text-sm"></textarea>
+
+          <button class="w-full bg-black text-white py-3 rounded-xl font-medium hover:bg-gray-900 transition">
+            Send Enquiry
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
