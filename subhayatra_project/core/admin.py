@@ -44,3 +44,25 @@ class BannerAdmin(admin.ModelAdmin):
             "fields": ("desktop_image", "mobile_image"),
         }),
     )
+
+#make topbar section
+from .models import TopBarMessage
+
+@admin.register(TopBarMessage)
+class TopBarMessageAdmin(admin.ModelAdmin):
+    list_display = ("text", "is_active", "order")
+    list_editable = ("is_active", "order")
+
+#BASE SEO ADMIN SECTION
+from .models import BaseSEO
+
+@admin.register(BaseSEO)
+class BaseSEOAdmin(admin.ModelAdmin):
+    fieldsets = (
+        ("Basic SEO", {
+            "fields": ("site_name", "meta_title", "meta_description"),
+        }),
+        ("Branding", {
+            "fields": ("og_image", "favicon"),
+        }),
+    )

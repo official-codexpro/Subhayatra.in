@@ -5,22 +5,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- ================= BASE SEO ================= -->
     <title>
-      {% block title %}Smokeking Store – Vintage Lighters{% endblock %}
+      {% block title %} {{ base_seo.meta_title|default:"SubhaYatra – Travel Made
+      Easy" }} {% endblock %}
     </title>
+
+    <meta
+      name="description"
+      content="{% block meta_description %}
+            {{ base_seo.meta_description|default:'Best travel packages across India.' }}
+          {% endblock %}"
+    />
+
+    <!-- Open Graph (Social Share) -->
+    {% if base_seo.og_image %}
+    <meta property="og:image" content="{{ base_seo.og_image }}" />
+    {% endif %}
+
+    <!-- Favicon -->
+    {% if base_seo.favicon %}
+    <link rel="icon" href="{{ base_seo.favicon }}" />
+    {% endif %}
+    <!-- ================================================= -->
 
     <!-- Local CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    
+
+    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -29,26 +51,26 @@
 
   <body class="bg-white">
     <!-- HEADER MARQUEE -->
+    {% if topbar_messages %}
     <section class="bg-black overflow-hidden">
       <div class="relative flex whitespace-nowrap">
         <div
           class="flex animate-marquee gap-10 py-2 text-[10px] sm:text-[11px] tracking-[0.3em] uppercase text-white font-medium"
         >
-          <span>✈️ Seamless Journeys — Travel Made Effortless</span>
-          <span>🌍 Discover Beautiful Destinations Across India</span>
-          <span>🚗 Premium Cabs & Comfortable Rides</span>
-          <span>🧳 Curated Travel Experiences for Every Explorer</span>
+          {% for msg in topbar_messages %}
+          <span>{{ msg.text }}</span>
+          {% endfor %}
 
           <!-- duplicate for smooth loop -->
-          <span>✈️ Seamless Journeys — Travel Made Effortless</span>
-          <span>🌍 Discover Beautiful Destinations Across India</span>
-          <span>🚗 Premium Cabs & Comfortable Rides</span>
-          <span>🧳 Curated Travel Experiences for Every Explorer</span>
+          {% for msg in topbar_messages %}
+          <span>{{ msg.text }}</span>
+          {% endfor %}
         </div>
       </div>
     </section>
+    {% endif %}
 
-    <!-- NAVBAR -->
+    <!-- NAVBAR SECTION START-->
     <nav class="w-full bg-white border-b border-gray-100 sticky top-0 z-50">
       <div
         class="max-w-7xl mx-auto px-6 h-12 flex items-center justify-between"
@@ -179,106 +201,81 @@
       </div>
     </div>
 
-    <!--footer section start-->
-    <footer class="relative bg-[#0b0b0f] text-white overflow-hidden">
-      <!-- FLOATING WORD -->
-      <div
-        class="absolute top-4 right-6 text-[7rem] font-black text-white/5 select-none"
-      >
-        TRAVEL
+
+
+
+   
+    <!-- PREMIUM FOOTER -->
+<footer class="relative bg-[#0a0a0e] text-white overflow-hidden">
+
+  <div class="relative max-w-7xl mx-auto px-6 py-20">
+
+    <!-- MAIN GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-14">
+      
+      <!-- BRAND -->
+      <div>
+        <h3 class="text-2xl font-black tracking-tight">
+          <span>Subha</span><span class="text-[#dc3545]">Yatra</span>
+        </h3>
+        <p class="mt-4 text-sm text-gray-400 leading-relaxed">
+          A modern travel studio designing meaningful journeys across India and beyond.
+        </p>
       </div>
-      <div class="relative max-w-7xl mx-auto px-6 py-20">
-        <!-- HERO LINE -->
-        <div class="mb-16">
-          <h2
-            class="text-[clamp(2.8rem,6vw,5rem)] font-black leading-none tracking-tight"
-          >
-            <span class="text-white">Let’s Go</span>
-            <span class="block text-[#dc3545]">Somewhere.</span>
-          </h2>
-          <p class="mt-5 text-sm text-gray-400 max-w-md">
-            Not packages. Not templates. Just damn good travel experiences.
-          </p>
-        </div>
-        <!-- STRIP -->
-        <div
-          class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-white/10 pt-12"
-        >
-          <!-- BRAND -->
-          <div>
-            <span class="text-xs uppercase tracking-[0.35em] text-gray-500"
-              >Brand</span
-            >
-            <h3 class="mt-3 text-2xl font-extrabold">
-              <span class="text-white">Subha</span
-              ><span class="text-[#dc3545]">Yatra</span>
-            </h3>
-            <p class="mt-3 text-sm text-gray-400">Travel, but with taste.</p>
-          </div>
-          <!-- LINKS -->
-          <div>
-            <span class="text-xs uppercase tracking-[0.35em] text-gray-500"
-              >Explore</span
-            >
-            <ul class="mt-3 space-y-2 text-sm">
-              <li>
-                <a class="transition hover:text-[#dc3545]" href="#"
-                  >International Trips</a
-                >
-              </li>
-              <li>
-                <a class="transition hover:text-[#dc3545]" href="#"
-                  >India Tours</a
-                >
-              </li>
-              <li>
-                <a class="transition hover:text-[#dc3545]" href="#"
-                  >Custom Plans</a
-                >
-              </li>
-            </ul>
-          </div>
-          <!-- CONTACT -->
-          <div>
-            <span class="text-xs uppercase tracking-[0.35em] text-gray-500"
-              >Say Hi</span
-            >
-            <p class="mt-3 text-sm text-gray-400 leading-relaxed">
-              New Delhi, India +91 88003 07097 hello@unboundtravels.com
-            </p>
-            <!-- CTA -->
-            <a
-              class="inline-block mt-6 px-6 py-3 rounded-full bg-white text-black text-sm font-bold hover:bg-[#dc3545] hover:text-white transition"
-              href="#"
-            >
-              Plan Something Crazy →
-            </a>
-          </div>
-        </div>
-        <!-- BOTTOM -->
-        <div
-          class="mt-14 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500"
-        >
-          © 2025 Subhayatra
-          <span class="italic">DESIGN &amp; DEVELOPED BY CODEXPRO</span>
-        </div>
+
+      <!-- LINKS -->
+      <div>
+        <p class="text-xs uppercase tracking-[0.3em] text-gray-500 mb-5">Explore</p>
+        <ul class="space-y-3 text-sm">
+          <li><a href="#" class="hover:text-[#dc3545] transition">International Trips</a></li>
+          <li><a href="#" class="hover:text-[#dc3545] transition">India Tours</a></li>
+          <li><a href="#" class="hover:text-[#dc3545] transition">Custom Experiences</a></li>
+        </ul>
       </div>
-    </footer>
+
+      <!-- COMPANY -->
+      <div>
+        <p class="text-xs uppercase tracking-[0.3em] text-gray-500 mb-5">Company</p>
+        <ul class="space-y-3 text-sm">
+          <li><a href="#" class="hover:text-[#dc3545] transition">About Us</a></li>
+          <li><a href="#" class="hover:text-[#dc3545] transition">Why Us</a></li>
+          <li><a href="#" class="hover:text-[#dc3545] transition">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- CONTACT + CTA -->
+      <div>
+        <p class="text-xs uppercase tracking-[0.3em] text-gray-500 mb-5">Let’s Talk</p>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          New Delhi, India<br>
+          +91 88003 07097<br>
+          hello@unboundtravels.com
+        </p>
+
+        <a
+          href="#"
+          class="inline-flex items-center gap-2 mt-7 px-7 py-3 rounded-full 
+                 bg-[#dc3545] text-white text-sm font-semibold
+                 hover:bg-white hover:text-black transition-all"
+        >
+          Plan Your Trip →
+        </a>
+      </div>
+    </div>
+
+    <!-- BOTTOM (GRID KE NICHE) -->
+    <div class="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+      <span>© 2025 SubhaYatra. All rights reserved.</span>
+      <span class="tracking-wider">
+        DESIGN & DEVELOPED BY <strong class="text-white">CODEXPRO</strong>
+      </span>
+    </div>
+
+  </div>
+</footer>
+
   </body>
-  <!-- JS -->
-  <script>
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("overlay");
-
-    function openMenu() {
-      sidebar.classList.remove("translate-x-full");
-      overlay.classList.remove("opacity-0", "pointer-events-none");
-    }
-
-    function closeMenu() {
-      sidebar.classList.add("translate-x-full");
-      overlay.classList.add("opacity-0", "pointer-events-none");
-    }
-  </script>
+  
+  <script src="{% static 'js/script.js' %}"></script>
   {% block extra_js %}{% endblock %}
 </html>

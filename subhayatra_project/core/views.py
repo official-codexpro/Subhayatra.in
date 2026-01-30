@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Post, Package, PageBanner
+from .models import Post, Package, PageBanner, TopBarMessage
 
 
 # Helper: page-wise banner
@@ -7,38 +7,40 @@ def get_banner(page_name):
     return PageBanner.objects.filter(page=page_name, is_active=True).first()
 
 
-# HOME PAGE → ONLY 8 CARDS
+# HOME PAGE → HERO + TOPBAR + 8 PACKAGES
 def home(request):
     hero = get_banner("home")
     packages = Package.objects.all()[:8]
     posts = Post.objects.all()
+    topbar_messages = TopBarMessage.objects.filter(is_active=True)
 
     return render(request, "index.html", {
         "hero": hero,
         "packages": packages,
         "posts": posts,
+        "topbar_messages": topbar_messages,
     })
 
 
 # PACKAGE DETAIL PAGE
 def package_detail(request, slug):
     package = get_object_or_404(Package, slug=slug)
-    hero = get_banner("package")  # optional banner for detail page
+    hero = get_banner("package")
 
     return render(request, "package_detail.html", {
         "hero": hero,
-        "package": package
+        "package": package,
     })
 
 
-# DESTINATIONS PAGE → ALL CARDS
+# DESTINATIONS PAGE
 def destinations(request):
     hero = get_banner("destinations")
     packages = Package.objects.all()
 
     return render(request, "destinations.html", {
         "hero": hero,
-        "packages": packages
+        "packages": packages,
     })
 
 
