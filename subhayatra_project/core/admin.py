@@ -1,30 +1,37 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Package, PageBanner
 
-# Register your models here.
-admin.site.register(Post),
-
-from .models import Package
-admin.site.register(Package),
-
-from django.contrib import admin
+# Admin branding
 admin.site.site_header = "SubhaYatra.in"
-from django.contrib import admin
-from .models import HomeHero
+admin.site.site_title = "SubhaYatra Admin"
+admin.site.index_title = "Website Control Panel"
 
-from django.contrib import admin
-from .models import HomeHero
 
-from django.contrib import admin
-from .models import HomeHero
+# Post
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ("title",)
 
-@admin.register(HomeHero)
-class HomeHeroAdmin(admin.ModelAdmin):
-    list_display = ("title", "is_active")
+
+# Package
+@admin.register(Package)
+class PackageAdmin(admin.ModelAdmin):
+    list_display = ("card_title", "price", "rating")
+    prepopulated_fields = {"slug": ("page_title",)}
+
+
+# 🔥 BANNER (ONLY ONE SYSTEM)
+@admin.register(PageBanner)
+class BannerAdmin(admin.ModelAdmin):
+    list_display = ("page", "is_active")
     list_editable = ("is_active",)
+    list_filter = ("page",)
 
     fieldsets = (
-        ("Text Content", {
+        ("Page Settings", {
+            "fields": ("page", "is_active"),
+        }),
+        ("Banner Content", {
             "fields": ("title", "main_title", "subtitle", "paragraph"),
         }),
         ("Buttons", {
@@ -34,10 +41,6 @@ class HomeHeroAdmin(admin.ModelAdmin):
             ),
         }),
         ("Images", {
-            "fields": ("image", "mobile_image"),
-        }),
-        ("Settings", {
-            "fields": ("is_active",),
+            "fields": ("desktop_image", "mobile_image"),
         }),
     )
-

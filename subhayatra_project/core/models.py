@@ -45,10 +45,22 @@ class Package(models.Model):
     def __str__(self):
         return self.card_title
 
-#hero section image change feature here
 from django.db import models
 
-class HomeHero(models.Model):
+class PageBanner(models.Model):
+
+    PAGE_CHOICES = (
+        ("home", "Home Page"),
+        ("about", "About Page"),
+        ("destinations", "Destinations Page"),
+        ("carrental", "Car Rental Page"),
+        ("tempotravel", "Tempo Travel Page"),
+        ("booking", "Booking Page"),
+    )
+
+    # Page selector
+    page = models.CharField(max_length=50, choices=PAGE_CHOICES)
+
     # Text content
     title = models.CharField(max_length=100, blank=True, null=True)
     main_title = models.CharField(max_length=200, blank=True, null=True)
@@ -63,17 +75,15 @@ class HomeHero(models.Model):
     button2_link = models.URLField(blank=True, null=True)
 
     # Images
-    image = models.URLField(help_text="Desktop hero image", blank=True, null=True)
-    mobile_image = models.URLField(help_text="Mobile hero image", blank=True, null=True)
+    desktop_image = models.URLField(blank=True, null=True)
+    mobile_image = models.URLField(blank=True, null=True)
 
     # Settings
     is_active = models.BooleanField(default=True)
 
     class Meta:
-        verbose_name = "HomeBanner"
-        verbose_name_plural = "HomeBanner"
+        verbose_name = "Page Banner"
+        verbose_name_plural = "Page Banners"
 
     def __str__(self):
-        return self.title or f"HomeBanner #{self.id}"
-
-
+        return f"{self.page} banner"

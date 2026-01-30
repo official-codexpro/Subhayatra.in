@@ -78,17 +78,17 @@
           </a>
 
           <a
-            href="{% url 'carrental' %}"
-            class="nav-link {% if request.resolver_match.url_name == 'car_rental' %}active{% endif %}"
-          >
-            CAR RENTAL
-          </a>
-
-          <a
             href="{% url 'destinations' %}"
             class="nav-link {% if request.resolver_match.url_name == 'destinations' %}active{% endif %}"
           >
             DESTINATIONS
+          </a>
+
+          <a
+            href="{% url 'carrental' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'car_rental' %}active{% endif %}"
+          >
+            CAR RENTAL
           </a>
 
           <a
@@ -150,17 +150,17 @@
         </a>
 
         <a
-          href="{% url 'carrental' %}"
-          class="nav-link {% if request.resolver_match.url_name == 'car_rental' %}active{% endif %}"
-        >
-          CAR RENTAL
-        </a>
-
-        <a
           href="{% url 'destinations' %}"
           class="nav-link {% if request.resolver_match.url_name == 'destinations' %}active{% endif %}"
         >
           DESTINATIONS
+        </a>
+
+        <a
+          href="{% url 'carrental' %}"
+          class="nav-link {% if request.resolver_match.url_name == 'car_rental' %}active{% endif %}"
+        >
+          CAR RENTAL
         </a>
 
         <a
@@ -178,10 +178,6 @@
         </a>
       </div>
     </div>
-
-
-
-
 
     <!--footer section start-->
     <footer class="relative bg-[#0b0b0f] text-white overflow-hidden">
